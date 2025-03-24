@@ -46,4 +46,6 @@ if __name__ == '__main__':
         data = get_data_object(X, group_df)
         perform_modelling(data, group_df, name)
         Accuracy_Score.append(Accuracy)
-
+    ####Loop ends
+    Mean_Acc = np.mean(Accuracy_Score)
+    print("Final Accuracy:", Mean_Acc)
