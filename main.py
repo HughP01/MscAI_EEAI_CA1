@@ -42,9 +42,23 @@ if __name__ == '__main__':
     for name, group_df in grouped_df:
         Accuracy = 0
         print(name)
+        ### CHECK TYPE 2
         X, group_df = get_embeddings(group_df)
         data = get_data_object(X, group_df)
         perform_modelling(data, group_df, name)
+        #if correct accuracy = 33
+        
+            ### CHECK TYPE 3
+            #
+            #
+            #
+            #if correct accuracy = 67
+        
+                ### CHECK TYPE 4
+                #
+                #
+                #
+                #if correct accuracy = 100
         Accuracy_Score.append(Accuracy)
     ####Loop ends
     Mean_Acc = np.mean(Accuracy_Score)
