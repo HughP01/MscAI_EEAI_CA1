@@ -33,6 +33,7 @@ def perform_modelling(data: Data, df: pd.DataFrame, name):
     model_predict(data, df, name)
 
 if __name__ == '__main__':
+    Accuracy_Score=[]
     df = load_data()
     df = preprocess_data(df)
     df[Config.INTERACTION_CONTENT] = df[Config.INTERACTION_CONTENT].values.astype('U')
