@@ -67,8 +67,9 @@ if __name__ == '__main__':
     X, _ = get_embeddings(df)  #Make sure get_embeddings is set up to handle df correctly
 
     #Ensure the column name used in groupby exists in your DataFrame
-    if 'Mailbox' in df.columns:
-        grouped_df = df.groupby('Mailbox')
+    if 'y1' in df.columns:
+        grouped_df = df.groupby('y1')
+        final_acc = []
         for name, group_df in grouped_df:
             print(f'Processing group: {name}')
             X_group, _ = get_embeddings(group_df)  #Prepare embeddings for each group
@@ -79,13 +80,17 @@ if __name__ == '__main__':
                     continue
                 #print(f'Accuracy for {label} in group {name}: {accuracy:.2f}')
                 print(f'Accuracy for {label}: {accuracy:.3f}')
-        #final_acc = 
-        accuracy_values = [accuracy for _, accuracy, _ in results]
-        y2acc = accuracy_values[1]
-        y3acc = accuracy_values[2]
-        y4acc = accuracy_values[3]
-        final_acc = ((100-y2acc)*0.0 + (y2acc-y3acc)*33.3 + (y3acc-y4acc)*67 + (y4acc)*100)/100
-        print(f"The total accuracy of the chained RandomForest model is: {final_acc:.3f}")
+            accuracy_values = [accuracy for _, accuracy, _ in results]
+            y2acc = accuracy_values[1]
+            y3acc = accuracy_values[2]
+            y4acc = accuracy_values[3]
+            acc = ((100-y2acc)*0.0 + (y2acc-y3acc)*33.3 + (y3acc-y4acc)*67 + (y4acc)*100)/100 #Formula for 3-link chain model accuracy as defined in CA documentation
+            print(f"The total accuracy of the chained RandomForest model for group: {name} is: {acc:.3f}")
+            final_acc.append(acc)
+            print("-------------")#Tidy up output
+        final_acc = np.mean(final_acc)
+        print(f"Total accuracy of the chained random forest model over both groups: {final_acc:.3f}") 
+        
     else:
-        print("Error: 'Mailbox' column not found in DataFrame.")
-    
+        print("""Error: 'y1' column not found in DataFrame. 
+        DEBUG: TYPE1 Not found in .csv""")
