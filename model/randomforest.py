@@ -29,7 +29,7 @@ class RandomForest:
         return self.model.predict(X_test)
 
     def print_results(self, predictions, y_test):
-        print(classification_report(y_test, predictions))
+        #print(classification_report(y_test, predictions))
         accuracy = accuracy_score(y_test, predictions)
         #print(f'Accuracy score: {accuracy}')
         return accuracy
