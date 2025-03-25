@@ -75,7 +75,17 @@ if __name__ == '__main__':
             data_splits = get_data_object(X_group, group_df)  #Prepare data splits for this group
             results = model_predict(data_splits)
             for label, accuracy, _ in results:
-                print(f'Accuracy for {label} in group {name}: {accuracy}')
+                if label == "y":
+                    continue
+                #print(f'Accuracy for {label} in group {name}: {accuracy:.2f}')
+                print(f'Accuracy for {label}: {accuracy:.3f}')
+        #final_acc = 
+        accuracy_values = [accuracy for _, accuracy, _ in results]
+        y2acc = accuracy_values[1]
+        y3acc = accuracy_values[2]
+        y4acc = accuracy_values[3]
+        final_acc = ((100-y2acc)*0.0 + (y2acc-y3acc)*33.3 + (y3acc-y4acc)*67 + (y4acc)*100)/100
+        print(f"The total accuracy of the chained RandomForest model is: {final_acc:.3f}")
     else:
         print("Error: 'Mailbox' column not found in DataFrame.")
     
