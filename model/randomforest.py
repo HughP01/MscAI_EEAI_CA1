@@ -31,7 +31,7 @@ class RandomForest:
     def print_results(self, predictions, y_test):
         print(classification_report(y_test, predictions))
         accuracy = accuracy_score(y_test, predictions)
-        print(f'Accuracy score: {accuracy}')
+        #print(f'Accuracy score: {accuracy}')
         return accuracy
     
     def data_transform(self) -> None:
